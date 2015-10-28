@@ -353,6 +353,7 @@ class PyBuildExt(build_ext):
         lib_dirs = self.compiler.library_dirs + [
             '/lib64', '/usr/lib64',
             '/lib', '/usr/lib',
+            '/usr/lib/x86_64-linux-gnu'
             ]
         inc_dirs = self.compiler.include_dirs + ['/usr/include']
         exts = []
@@ -615,7 +616,8 @@ class PyBuildExt(build_ext):
                 ssl_incs += krb5_h
         ssl_libs = find_library_file(self.compiler, 'ssl',lib_dirs,
                                      ['/usr/local/ssl/lib',
-                                      '/usr/contrib/ssl/lib/'
+                                      '/usr/contrib/ssl/lib/',
+                                      'x86_64-linux-gnu'
                                      ] )
 
         if (ssl_incs is not None and
